@@ -41,6 +41,7 @@ server.use(express.json());
 server.use(cookieParser());
 server.use(express.urlencoded({ extended: false }));
 
+server.use("/uploads", express.static("./uploads"));
 
 server.use(cors());
 
