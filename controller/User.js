@@ -2,6 +2,7 @@
 //import fs from "fs";
 import { User } from "../model/User.js";
 
+
 export const fetchUserById = async (req, res) => {
   const { id } = req.params;
   try {
@@ -19,9 +20,11 @@ export const UpdateUser = async (req, res) => {
 
   try {
     const existingData = await User.findById(id);
+  console.log(existingData , "existing");
     let imagename = existingData.profilePic;
     if (req.file) {
       imagename = req.file.path;
+      console.log(imagename,"new file");
     }
 
 
