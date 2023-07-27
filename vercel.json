@@ -27,6 +27,10 @@
       "dest": "index.js"
     },
     {
+        "src": "/users/uploads/(.*)",
+        "dest": "index.js"
+      },
+    {
       "src": "/Auth",
       "dest": "index.js"
     },
