@@ -1284,13 +1284,13 @@
 
 .productPage {
   width: 100%;
+  min-height: 700px;
   margin-bottom: 50px;
   padding-top: 100px;
 }
 
 @media only screen and (width >= 768px) {
   .productPage {
-    min-height: 700px;
     margin-bottom: 0;
     padding-top: 70px;
   }
