@@ -2,6 +2,10 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import { fileURLToPath } from 'url';
+import path from "path";
+import { dirname } from 'path';
+
 import { config } from "dotenv";
 
 import Razorpay from "razorpay";
@@ -26,6 +30,12 @@ export var instance = new Razorpay({
   key_id: process.env.RAZERPAY_KEY_ID,
   key_secret: process.env.RAZERPAY_SECRET_KEY,
 });
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const buildPath = path.resolve(__dirname, 'build');
+server.use(express.static(buildPath));
 
 server.use(express.json());
 server.use(cookieParser());
