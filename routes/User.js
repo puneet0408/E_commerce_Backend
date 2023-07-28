@@ -5,12 +5,10 @@ import express from "express";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 const UserRouter = express.Router();
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(filename);
 
-const uploadPath = path.join(__dirname, "../uploads");
-const server = express();
-server.use(express.static(uploadPath));
+const uploadPath = path.join( __dirname, "../uploads");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -23,7 +21,6 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-
 UserRouter.get("/:id", fetchUserById)
   .patch("/:id", upload.single("profilePic"), UpdateUser)
   .delete("/delete/:id", DeleteUser);
