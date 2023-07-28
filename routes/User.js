@@ -8,7 +8,7 @@ const UserRouter = express.Router();
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = dirname(__filename);
 
-const uploadPath = path.join("../uploads");
+const uploadPath = path.join("uploads/");
 const server = express();
 server.use(express.static(uploadPath));
 
