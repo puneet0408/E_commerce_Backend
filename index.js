@@ -41,7 +41,8 @@ server.use(express.json());
 server.use(cookieParser());
 server.use(express.urlencoded({ extended: false }));
 
-server.use(express.static(__dirname,"uploads"));
+ 
+server.use(express.static(__dirname,"./uploads"));
 
 server.use(cors());
 
