@@ -22,6 +22,7 @@ export const UpdateUser = async (req, res) => {
     const existingData = await User.findById(id);
   console.log(existingData , "existing");
     let imagename = existingData.profilePic;
+    
     if (req.file) {
       imagename = req.file.path;
       console.log(imagename,"new file");
