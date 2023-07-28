@@ -31,7 +31,7 @@ export const UpdateUser = async (req, res) => {
     if (req.files && req.files.profilePic) {
       console.log(req.files.profilePic.data , "file");
       const result = await new Promise((resolve, reject) => {
-        cloudinary.uploader.upload(req.files.profilePic.data, (err, result) => {
+        cloudinary.uploader.upload(req.files.profilePic.tempFilePath, (err, result) => {
           if (err) {
             reject(err);
           } else {
