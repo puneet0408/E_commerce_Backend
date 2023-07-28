@@ -29,12 +29,14 @@ export const UpdateUser = async (req, res) => {
     let imagename = null;
 
     if (req.files && req.files.profilePic) {
+      console.log(req.files.profilePic.data , "file");
       const result = await new Promise((resolve, reject) => {
-        cloudinary.uploader.upload(req.files.profilePic.tempFilePath, (err, result) => {
+        cloudinary.uploader.upload(req.files.profilePic.data, (err, result) => {
           if (err) {
             reject(err);
           } else {
             resolve(result);
+            console.log(result,"result");
           }
         });
       });
