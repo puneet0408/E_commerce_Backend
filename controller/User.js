@@ -26,8 +26,6 @@ export const UpdateUser = async (req, res) => {
       imagename = req.file.path;
       console.log(imagename,"new file");
     }
-
-
     const doc = await User.findOneAndUpdate(
       { _id: id },
       { name: name, addresses: addresses, profilePic: imagename },

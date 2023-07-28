@@ -2,9 +2,9 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from "url";
 import path from "path";
-import { dirname } from 'path';
+import { dirname } from "path";
 
 import { config } from "dotenv";
 
@@ -34,7 +34,7 @@ export var instance = new Razorpay({
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const buildPath = path.resolve(__dirname, 'build');
+const buildPath = path.resolve(__dirname, "build");
 server.use(express.static(buildPath));
 
 server.use(express.json());
