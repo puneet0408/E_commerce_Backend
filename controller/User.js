@@ -22,16 +22,19 @@ export const UpdateUser = async (req, res) => {
     const existingData = await User.findById(id);
 
     let imagename = existingData.profilePic;
-    console.log(imagename , "existing");
     if (req.file) {
       imagename = req.file.path;
-      console.log(imagename,"new file");
     }
 
+    const updateData = { name, addresses };
+
+    if (req.file) {
+      updateData.profilePic = imagename;
+    }
 
     const doc = await User.findOneAndUpdate(
       { _id: id },
-      { name: name, addresses: addresses, profilePic: imagename },
+      updateData,
       {
         new: true,
       }
