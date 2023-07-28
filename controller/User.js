@@ -20,21 +20,16 @@ export const UpdateUser = async (req, res) => {
 
   try {
     const existingData = await User.findById(id);
-
+    
     let imagename = existingData.profilePic;
     if (req.file) {
       imagename = req.file.path;
     }
 
-    const updateData = { name, addresses };
-
-    if (req.file) {
-      updateData.profilePic = imagename;
-    }
 
     const doc = await User.findOneAndUpdate(
       { _id: id },
-      updateData,
+      { name: name, addresses: addresses, profilePic: imagename },
       {
         new: true,
       }
