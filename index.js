@@ -42,7 +42,7 @@ server.use(cookieParser());
 server.use(express.urlencoded({ extended: false }));
 
  
-server.use(express.static(__dirname,"./uploads"));
+server.use(express.static("./uploads"));
 
 server.use(cors());
 
