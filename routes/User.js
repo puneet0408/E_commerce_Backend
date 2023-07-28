@@ -9,8 +9,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const uploadPath = path.join(__dirname, "../uploads");
-const server = express();
-server.use(express.static(uploadPath));
+//const server = express();
+//server.use(express.static(uploadPath));
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
