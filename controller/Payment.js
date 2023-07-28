@@ -1,7 +1,6 @@
 import { instance } from "../index.js";
 import crypto from "crypto";
 import { Orders } from "../model/orders.js";
-import { log } from "console";
 
 export const checkout = async (req, res) => {
   console.log(req.body, "checkout");

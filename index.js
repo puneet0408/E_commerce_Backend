@@ -5,12 +5,10 @@ import cookieParser from "cookie-parser";
 import { fileURLToPath } from "url";
 import path from "path";
 import { dirname } from "path";
-
 import { config } from "dotenv";
-
 import Razorpay from "razorpay";
-
 config({ path: "./config/config.env" });
+import fileUpload from "express-fileupload";
 
 const server = express();
 import ProductRouter from "./routes/Products.js";
@@ -40,8 +38,9 @@ server.use(express.static(buildPath));
 server.use(express.json());
 server.use(cookieParser());
 server.use(express.urlencoded({ extended: false }));
+server.use(fileUpload({useTempFiles:true}))
 
-server.use("/uploads", express.static("./uploads"));
+
 
 server.use(cors());
 
