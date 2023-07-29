@@ -733,6 +733,16 @@
   }
 }
 
+.profilePage .afterLogin .profiledetails .ImageContainer .uploadicon {
+  color: #000;
+  z-index: 11;
+  background-color: #fff;
+  font-size: 1.5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .profilePage .afterLogin .profiledetails .ImageContainer .profilePic {
   object-fit: cover;
   width: 100%;
@@ -829,21 +839,12 @@
   resize: none;
   color: #fff;
   background-color: var(--black-lighter);
-  border-radius: 1rem;
+  border-radius: .5rem;
   height: 100px;
 }
 
 .profilePage .afterLogin .profiledetails .basicdetails .editForm ::placeholder {
   color: #fff;
-}
-
-.profilePage .afterLogin .profiledetails .basicdetails .editForm .addbgIcon {
-  color: #fff;
-  background-color: var(--black-lighter);
-  border-radius: 1rem;
-  width: 60%;
-  padding: 5px;
-  position: relative;
 }
 
 .profilePage .afterLogin .profiledetails .basicdetails .editForm button {
