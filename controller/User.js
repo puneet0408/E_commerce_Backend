@@ -26,30 +26,29 @@ export const UpdateUser = async (req, res) => {
   const { id } = req.params;
 
   try {
-    let imagename = null;
+    let profilePicUrl = null;
 
     if (req.files && req.files.profilePic) {
-      console.log(req.files.profilePic.data , "file");
       const result = await new Promise((resolve, reject) => {
         cloudinary.uploader.upload(req.files.profilePic.tempFilePath, (err, result) => {
           if (err) {
             reject(err);
           } else {
             resolve(result);
-            console.log(result,"result");
+            console.log(result, "result");
           }
         });
       });
 
-      imagename = result.url;
+      profilePicUrl = result.secure_url; // Use the secure_url provided by Cloudinary
     } else {
-      const existingImg = await User.findById(id);
-      imagename = existingImg.profilePic;
+      const existingUser = await User.findById(id);
+      profilePicUrl = existingUser.profilePic;
     }
 
     const doc = await User.findOneAndUpdate(
       { _id: id },
-      { name: name, addresses: addresses, profilePic: imagename },
+      { name: name, addresses: addresses, profilePic: profilePicUrl },
       {
         new: true,
       }
@@ -60,6 +59,7 @@ export const UpdateUser = async (req, res) => {
     res.status(400).json(err);
   }
 };
+
 
 
 export const DeleteUser = async (req, res) => {
