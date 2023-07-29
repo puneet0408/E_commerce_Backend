@@ -40,7 +40,7 @@ export const UpdateUser = async (req, res) => {
         });
       });
 
-      profilePicUrl = result.secure_url; // Use the secure_url provided by Cloudinary
+      profilePicUrl = result.url;
     } else {
       const existingUser = await User.findById(id);
       profilePicUrl = existingUser.profilePic;
