@@ -51,7 +51,7 @@ export const loginUser = async (req, res) => {
 };
 
 export const Profile = async (req, res) => {
-  const token = req.header('Authorization');
+  const token = req.header['Authorization'];
 
 console.log(token , "token");
   if (token) {
