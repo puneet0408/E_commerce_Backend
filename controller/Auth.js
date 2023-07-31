@@ -51,17 +51,20 @@ export const loginUser = async (req, res) => {
 };
 
 export const Profile = async (req, res) => {
-  const token = req.header['Authorization'];
+  const token = req.header('Authorization');
 
 console.log(token , "token");
-  if (token) {
-    jwt.verify(token, jwtSecret, {}, async (err, user) => {
-      if (err) throw err;
+if (token && token.startsWith("Bearer ")) {
+  const tokenValue = token.slice(7);
+    jwt.verify(tokenValue, jwtSecret, {}, async (err, user) => {
+      if(err){
+        return res.status(401).json({ message: "Unauthorized" });
+      }
       const userDoc = await User.findById(user.id);
       res.json(userDoc);
       console.log(userDoc.name);
     });
   } else {
-    res.status(422).json("fail to get profile");
+    res.status(422).json("can't get token");
   }
 };

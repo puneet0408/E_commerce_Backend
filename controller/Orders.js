@@ -17,19 +17,18 @@ export const placeOrder = (req, res) => {
   Purchase.save()
     .then((doc) => {
       res.status(200).json(doc);
-      User.findOne({ _id: doc.user })
-        .then((document) => {
-          if (document) {
-            document.orders.unshift(items);
-            return document.save();
-          } else {
-            console.log("User not found with ID:", doc.user);
-            return Promise.reject("User not found");
-          }
-        })
-        .catch((err) => {
-          console.error("Error while updating user document:", err);
-        });
+      // User.findOne({ _id: doc.user })
+      //   .then((document) => {
+      //     if (document) {
+      //       document.orders.unshift(items);
+      //       return document.save();
+      //     } else {
+      //       console.log("User not found );
+      //     }
+      //   })
+      //   .catch((err) => {
+      //     console.error("Error while updating user document:", err);
+      //   });
     })
     .catch((err) => {
       console.error("Error while saving Transition:", err);
