@@ -36,7 +36,7 @@ export const loginUser = async (req, res) => {
           {},
           (err, token) => {
             if (err) throw err;
-            res.json({ token: token, user: userDoc._id });
+            res.json({ token: token, user: userDoc });
           }
         );
       } else {
@@ -51,14 +51,16 @@ export const loginUser = async (req, res) => {
 };
 
 export const Profile = async (req, res) => {
-  const token = req.headers["authorization"];
+  const token = req.headers["Authorization"];
+
   if (token) {
     jwt.verify(token, jwtSecret, {}, async (err, user) => {
       if (err) throw err;
       const userDoc = await User.findById(user.id);
       res.json(userDoc);
+      console.log(userDoc.name);
     });
   } else {
-    res.status(422).json("invalid crenditials");
+    res.status(422).json("fail to get profile");
   }
 };
