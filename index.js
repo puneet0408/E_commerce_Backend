@@ -44,6 +44,8 @@ server.use(fileUpload({useTempFiles:true}))
 
 server.use(cors());
 
+
+
 server.use("/products", ProductRouter);
 server.use("/users", UserRouter);
 server.use("/Auth", Router);

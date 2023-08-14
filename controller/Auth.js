@@ -6,11 +6,12 @@ const bcryptSalt = bcrypt.genSaltSync(10);
 const jwtSecret = "hjkhjkhjkhjkhuiuhjkhjk";
 
 export const createUser = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password , role } = req.body;
   const user = new User({
     name,
     email,
     password: bcrypt.hashSync(password, bcryptSalt),
+    role
   });
   try {
     const doc = await user.save();

@@ -40,6 +40,10 @@ const productSchema = new Schema({
     type: Boolean,
     default: false
   },
+  sellerId : {
+    type:String,
+    required:true
+  }
 });
 
 const virtual = productSchema.virtual('id');
