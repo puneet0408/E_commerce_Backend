@@ -67,6 +67,10 @@
       "dest": "build/$1"
     },
     {
+      "src": "/(.*)",
+      "dest": "build/$1"
+    },
+    {
        "src": "/(.*)",
      "dest": "/index.js" 
     }
