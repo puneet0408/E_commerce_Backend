@@ -29,10 +29,15 @@ export var instance = new Razorpay({
   key_secret: process.env.RAZERPAY_SECRET_KEY,
 });
 
+// imort.meta.url propery provide the url  of current module
+// fileURLToPath is convert the URL into platorm specfic file_path that understud by node js 
+// 
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
+ 
 const buildPath = path.resolve(__dirname, "build");
+
 server.use(express.static(buildPath));
 
 server.use(express.json());
