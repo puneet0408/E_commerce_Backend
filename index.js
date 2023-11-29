@@ -9,7 +9,6 @@ import { config } from "dotenv";
 import Razorpay from "razorpay";
 config({ path: "./config/config.env" });
 import fileUpload from "express-fileupload";
-
 const server = express();
 import ProductRouter from "./routes/Products.js";
 import UserRouter from "./routes/User.js";
@@ -30,26 +29,23 @@ export var instance = new Razorpay({
 });
 
 // imort.meta.url propery provide the url  of current module
-// fileURLToPath is convert the URL into platorm specfic file_path that understud by node js 
-// 
+// fileURLToPath is convert the URL into platorm specfic file_path that understud by node js
+//
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
- 
+
 const buildPath = path.resolve(__dirname, "build");
 
-server.use(express.static(buildPath));
+// middleware                                        
+server.use(express.static(buildPath)); // for static files from frontend
 
-server.use(express.json());
+server.use(express.json()); // for reading json data comming from request
 server.use(cookieParser());
-server.use(express.urlencoded({ extended: false }));
-server.use(fileUpload({useTempFiles:true}))
-
-
+server.use(express.urlencoded({ extended: false })); // for getting html  form data from frontend
+server.use(fileUpload({ useTempFiles: true }));
 
 server.use(cors());
-
-
 
 server.use("/products", ProductRouter);
 server.use("/users", UserRouter);
