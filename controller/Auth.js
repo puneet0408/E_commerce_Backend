@@ -1,16 +1,17 @@
 import { User } from "../model/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+
 const bcryptSalt = bcrypt.genSaltSync(10);
 const jwtSecret = "hjkhjkhjkhjkhuiuhjkhjk";
 
 export const createUser = async (req, res) => {
-  const { name, email, password, role } = req.body;
+  const { name, email, password , role } = req.body;
   const user = new User({
     name,
     email,
     password: bcrypt.hashSync(password, bcryptSalt),
-    role,
+    role
   });
   try {
     const doc = await user.save();
@@ -51,12 +52,13 @@ export const loginUser = async (req, res) => {
 };
 
 export const Profile = async (req, res) => {
-  const token = req.header("Authorization");
-  console.log(token, "token");
-  if (token && token.startsWith("Bearer ")) {
-    const tokenValue = token.slice(7);
+  const token = req.header('Authorization');
+
+console.log(token , "token");
+if (token && token.startsWith("Bearer ")) {
+  const tokenValue = token.slice(7);
     jwt.verify(tokenValue, jwtSecret, {}, async (err, user) => {
-      if (err) {
+      if(err){
         return res.status(401).json({ message: "Unauthorized" });
       }
       const userDoc = await User.findById(user.id);
