@@ -11,6 +11,15 @@ config({ path: "./config/config.env" });
 import fileUpload from "express-fileupload";
 
 const server = express();
+
+const corsOptions = {
+  origin: "*",
+  credentials: true, //access-control-allow-credentials:true
+};
+
+server.use(cors(corsOptions));
+
+
 import ProductRouter from "./routes/Products.js";
 import UserRouter from "./routes/User.js";
 import Router from "./routes/Auth.js";
@@ -47,7 +56,6 @@ server.use(fileUpload({useTempFiles:true}))
 
 
 
-server.use(cors());
 
 
 
