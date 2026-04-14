@@ -15,13 +15,11 @@ export const tophighrated = (req , res, next) =>{
   req.query.limit = '20';
   req.query.sort = "-rating";
 next(); 
-
 }
 
 export const fetchAllProducts = asyncerrorhandler( async (req, res) => {
   
     console.log(req.query)
-     // this work for adding & 
     let queryStr = JSON.stringify(req.query);
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g,(match)=>`$${match}`);
     const quertobj = JSON.parse(queryStr);

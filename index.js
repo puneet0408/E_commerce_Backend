@@ -16,7 +16,7 @@ process.on('uncaughtException', (err) => {
   console.log(err.name, err.message);
   console.log("Uncaught Exception occurred, shutting down...");
   process.exit(1);
-})
+});
 
 const server = express();
 
@@ -58,6 +58,10 @@ server.use(cookieParser());
 server.use(express.urlencoded({ extended: true }));
 server.use(fileUpload({ useTempFiles: true }));
 
+server.get("/", (req, res) => {
+  res.json({ status: "success" });
+});
+
 server.use("/products", ProductRouter);
 server.use("/users", UserRouter);
 server.use("/Auth", Router);
@@ -68,15 +72,12 @@ server.get("/payment/getkey", (req, res) => {
   res.status(200).json({ key: process.env.RAZERPAY_KEY_ID });
 });
 
+// 404 handler should be after all routes
 server.all('*', (req, res, next) => {
   const err = new CustomError(`Can't find ${req.originalUrl} on this server`, 404);
   next(err);
 });
 server.use(glbalerrorhandler);
-
-server.get("/", (req, res) => {
-  res.json({ status: "success" });
-});
 
 const app = server.listen(process.env.PORT, () => {
   console.log(`Server started on port ${process.env.PORT}`);
